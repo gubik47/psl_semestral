@@ -1,0 +1,15 @@
+@(seq: Sequence)
+
+@main("Edit sequence") {
+    <main>
+        <h1>Edit sequence with ID: @seq.id</h1>
+        <form id="edit-form" action="@routes.Application.update(seq.id)" method="POST">
+            <div class="form-group">
+                <label class="control-label" for="name">Name:</label>
+                <input class="form-control" type="text" name="name" value="@seq.name">
+            </div>
+            <textarea class="form-control" name="content" id="" rows="10">@seq.content</textarea>
+            <input class="btn btn-primary button" type="submit" value="Update">
+        </form>
+    </main>
+}

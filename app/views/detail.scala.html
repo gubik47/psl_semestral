@@ -1,0 +1,16 @@
+@(seq: Sequence)
+
+@main(seq.name) {
+    <main>
+        <h1>Sequence detail</h1>
+        <ul class="info">
+            <li><b>ID:</b><span>@seq.id</span></li>
+            <li><b>Name:</b><span>@seq.name</span></li>
+        </ul>
+        <pre>@seq.content</pre>
+        <a class="btn btn-primary button" href="@routes.Application.edit(seq.id)">Edit</a>
+        <form id="delete-form" method="POST" action="@routes.Application.delete(seq.id)">
+            <input class="btn btn-default button" type="submit" value="Delete" onclick="return confirm('Really?')">
+        </form>
+    </main>
+}

@@ -1,0 +1,23 @@
+@(sequences: List[Sequence])
+
+@main("List of all sequences") {
+    <main>
+        <h1>@sequences.size DNA sequence(s) stored in database</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @sequences.map { seq =>
+                    <tr>
+                        <td class="id">@seq.id</td>
+                        <td class="name"><a class="link" href="@routes.Application.detail(seq.id)">@seq.name</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+}

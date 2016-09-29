@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                           controllers.Application.index
+GET         /sequences                  controllers.Application.list
+GET         /sequence/:id               controllers.Application.detail(id: Long)
+POST        /sequence/:id/delete        controllers.Application.delete(id: Long)
+GET         /sequence/:id/edit          controllers.Application.edit(id: Long)
+POST        /sequence/:id               controllers.Application.update(id: Long)
+
+POST        /upload                     controllers.Alignment.upload
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file               controllers.Assets.at(path="/public", file)
+
+    

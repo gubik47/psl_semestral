@@ -1,0 +1,36 @@
+@(alignable: Alignable, results: List[AlignmentResult], srcTimeSeries: String)
+
+@main("Uploaded sequence") {
+    <main>
+        <h1 id="tested-sequence-name">@alignable.name</h1>
+        <ul class="info">
+            <li><b>(A)denine base value:</b><span>@alignable.aVal</span></li>
+            <li><b>(C)ytosine base value:</b><span>@alignable.cVal</span></li>
+            <li><b>(T)hymine base value:</b><span>@alignable.tVal</span></li>
+            <li><b>(G)uanine base value:</b><span>@alignable.gVal</span></li>
+        </ul>
+        <table id="distance-table">
+            <legend>10 most similar DNA sequences</legend>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DTW Distance</th>
+                </tr>
+            </thead>
+            <tbody>
+            @results.zipWithIndex.map { case(res, idx) =>
+                <tr id="@idx" data-source="@srcTimeSeries" data-result="@res.timeSeries">
+                    <td class="order">@(idx + 1)</td>
+                    <td class="id">@res.id</td>
+                    <td class="name">@res.name</td>
+                    <td class="distance">@res.dist</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <div id="chart-container" style="min-width: 310px; height: 400px;"></div>
+        <script src="@routes.Assets.at("javascripts/chart.js")"></script>
+    </main>
+}
